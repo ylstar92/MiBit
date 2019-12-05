@@ -12,33 +12,33 @@ namespace mibit_Display {
     
     export enum enColor {
 
-        //% blockId="OFF" block="灭"
+        //% blockId="OFF" block="OFF"
         OFF = 0,
-        //% blockId="Red" block="红色"
+        //% blockId="Red" block="Red"
         Red,
-        //% blockId="Green" block="绿色"
+        //% blockId="Green" block="Green"
         Green,
-        //% blockId="Blue" block="蓝色"
+        //% blockId="Blue" block="Blue"
         Blue,
-        //% blockId="White" block="白色"
+        //% blockId="White" block="White"
         White,
-        //% blockId="Cyan" block="青色"
+        //% blockId="Cyan" block="Cyan"
         Cyan,
-        //% blockId="Pinkish" block="品红"
+        //% blockId="Pinkish" block="Pinkish"
         Pinkish,
-        //% blockId="Green" block="黄色"
+        //% blockId="Yellow" block="Yellow"
         Yellow,
 
     }
     export enum enLED1 {
         
-        //% blockId="OFF" block="灭"
+        //% blockId="OFF" block="OFF"
         OFF = 0,
-        //% blockId="ON" block="亮"
+        //% blockId="ON" block="ON"
         ON =1
     }
 
-    //% blockId=mibit_LED1 block="LED灯|引脚 %pin|状态 %value"
+    //% blockId=mibit_LED1 block="light|pin %pin|state %value"
     //% weight=5
     //% blockGap=8
     //% color="#C814B8"
@@ -49,7 +49,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_LED2 block="LED灯|引脚 %pin|亮度 %value"
+    //% blockId=mibit_LED2 block="light|pin %pin|brightness %value"
     //% weight=4
     //% blockGap=8
     //% color="#C814B8"
@@ -61,7 +61,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_BreathLED block="呼吸灯|引脚 %pin"
+    //% blockId=mibit_BreathLED block="Breathing light|pin %pin"
     //% weight=3
     //% blockGap=8
     //% color="#C814B8"
@@ -82,7 +82,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_RGB block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|红色 %value1|绿色 %value2|蓝色 %value3"
+    //% blockId=mibit_RGB block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|red %value1|green %value2|blue %value3"
     //% weight=2
     //% blockGap=8
     //% color="#C814B8"
@@ -95,7 +95,7 @@ namespace mibit_Display {
         pins.analogWritePin(pin3, value3 * 1024 / 256);
 
     }
-    //% blockId=mibit_RGB2 block="RGB七彩灯|引脚R %pin1|引脚G %pin2|引脚B %pin3|显示 %value"
+    //% blockId=mibit_RGB2 block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|display %value"
     //% weight=1
     //% blockGap=8
     //% color="#C814B8"
@@ -164,21 +164,21 @@ namespace mibit_Display {
 namespace mibit_Sensor {
 
     export enum enVoice {
-        //% blockId="Voice" block="有声音"
+        //% blockId="Voice" block="Voice"
         Voice = 0,
-        //% blockId="NoVoice" block="无声音"
+        //% blockId="NoVoice" block="NoVoice"
         NoVoice = 1
     }
 
     export enum enIR {
-        //% blockId="Get" block="检测到"
+        //% blockId="Get" block="Get"
         Get = 0,
-        //% blockId="NoVoice" block="未检测"
+        //% blockId="NoGet" block="NoGet"
         NoGet = 1
     }
     
 
-    //% blockId=mibit_Voice_Sensor block="声音传感器|引脚 %pin|返回 %value"
+    //% blockId=mibit_Voice_Sensor block="sound sensor|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -203,7 +203,7 @@ namespace mibit_Sensor {
             control.waitMicros(13);
         }
     }
-    //% blockId=mibit_IR_Sensor block="红外传感器|引脚 %pin|  |%value|障碍物"
+    //% blockId=mibit_IR_Sensor block="infrared sensor|pin %pin|  |%value|obstacle"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -221,7 +221,7 @@ namespace mibit_Sensor {
 
     }
 
-    //% blockId=mibit_IR_Send block="红外发射|引脚 %pin"
+    //% blockId=mibit_IR_Send block="Infrared emission|pin %pin"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -233,7 +233,7 @@ namespace mibit_Sensor {
 
     }
    
-    //% blockId=mibit_ultrasonic block="超声波|发射管脚 %Trig|接收管脚 %Echo"
+    //% blockId=mibit_ultrasonic block="ultrasonic|trig pin %Trig|echo pin %Echo"
     //% color="#87CEEB"
     //% weight=100
     //% blockGap=10
@@ -262,34 +262,34 @@ namespace mibit_Sensor {
 namespace mibit_Input {
 
     export enum enRocker {
-        //% blockId="Nostate" block="无"
+        //% blockId="Nostate" block="Nostate"
         Nostate = 0,
-        //% blockId="Up" block="上"
+        //% blockId="Up" block="Up"
         Up,
-        //% blockId="Down" block="下"
+        //% blockId="Down" block="Down"
         Down,
-        //% blockId="Left" block="左"
+        //% blockId="Left" block="Left"
         Left,
-        //% blockId="Right" block="右"
+        //% blockId="Right" block="Right"
         Right,
-        //% blockId="Press" block="按下"
+        //% blockId="Press" block="Press"
         Press
     }
 
     export enum enTouch {
-        //% blockId="NoTouch" block="未触摸"
+        //% blockId="NoTouch" block="NoTouch"
         NoTouch = 0,
-        //% blockId="Touch" block="触摸"
+        //% blockId="Touch" block="Touch"
         Touch = 1
     }
     export enum enButton {
-        //% blockId="Press" block="按下"
+        //% blockId="Press" block="Press"
         Press = 0,
-        //% blockId="Realse" block="松开"
+        //% blockId="Realse" block="Realse"
         Realse = 1
     }
 
-    //% blockId=mibit_TouchPad block="触摸开关|引脚 %pin|返回 %value"
+    //% blockId=mibit_TouchPad block="touch switch|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -305,7 +305,7 @@ namespace mibit_Input {
         }
 
     }
-    //% blockId=mibit_Rocker block="遥杆|VRX %pin1|VRY %pin2|SW %pin3|返回 %value"
+    //% blockId=mibit_Rocker block="joystick|VRX %pin1|VRY %pin2|SW %pin3|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -347,7 +347,7 @@ namespace mibit_Input {
 
     }
 
-    //% blockId=mibit_Button block="按键|引脚 %pin|返回 %value"
+    //% blockId=mibit_Button block="button|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -373,13 +373,13 @@ namespace mibit_Input {
 namespace mibit_Music {
     export enum enBuzzer {
 
-        //% blockId="NoBeep" block="响"
+        //% blockId="NoBeep" block="NoBeep"
         NoBeep = 0,
-        //% blockId="Beep" block="不响"
+        //% blockId="Beep" block="Beep"
         Beep
     }
 
-    //% blockId=mibit_Buzzer block="有源蜂鸣器|引脚 %pin|值 %value"
+    //% blockId=mibit_Buzzer block="active buzzer|pin %pin|value %value"
     //% weight=100
     //% blockGap=10 
     //% color="#D2691E"
@@ -401,7 +401,7 @@ namespace mibit_Music {
 //% color="#0000CD" weight=21 icon="\uf185"
 namespace mibit_Motor {
 
-    //% blockId=mibit_Fan block="风扇|引脚 %pin|速度 %value"
+    //% blockId=mibit_Fan block="fan|pin %pin|speed %value"
     //% weight=100
     //% blockGap=10
     //% color="#0000CD"
@@ -413,7 +413,7 @@ namespace mibit_Motor {
 
     }
 
-    //% blockId=mibit_Servo block="舵机|引脚 %pin|角度 %value"
+    //% blockId=mibit_Servo block="servo|pin %pin|angle %value"
     //% weight=100
     //% blockGap=10
     //% color="#0000CD"
@@ -454,21 +454,21 @@ namespace mibit_Car {
 
     export enum enColor {
 
-        //% blockId="OFF" block="灭"
+        //% blockId="OFF" block="OFF"
         OFF = 0,
-        //% blockId="Red" block="红色"
+        //% blockId="Red" block="Red"
         Red,
-        //% blockId="Green" block="绿色"
+        //% blockId="Green" block="Green"
         Green,
-        //% blockId="Blue" block="蓝色"
+        //% blockId="Blue" block="Blue"
         Blue,
-        //% blockId="White" block="白色"
+        //% blockId="White" block="White"
         White,
-        //% blockId="Cyan" block="青色"
+        //% blockId="Cyan" block="Cyan"
         Cyan,
-        //% blockId="Pinkish" block="品红"
+        //% blockId="Pinkish" block="Pinkish"
         Pinkish,
-        //% blockId="Green" block="黄色"
+        //% blockId="Yellow" block="Yellow"
         Yellow,
 
     }
@@ -498,24 +498,24 @@ namespace mibit_Car {
     }
     export enum enPos {
 
-        //% blockId="LeftState" block="左边状态"
+        //% blockId="LeftState" block="LeftState"
         LeftState = 1,
-        //% blockId="RightState" block="右边状态"
+        //% blockId="RightState" block="RightState"
         RightState = 0
     }
 
     export enum enLineState {
-        //% blockId="White" block="白线"
+        //% blockId="White" block="White"
         White = 0,
-        //% blockId="Black" block="黑线"
+        //% blockId="Black" block="Black"
         Black = 1
 
     }
     
     export enum enAvoidState {
-        //% blockId="OBSTACLE" block="有障碍物"
+        //% blockId="Obstacle" block="Obstacle"
         OBSTACLE = 0,
-        //% blockId="NOOBSTACLE" block="无障碍物"
+        //% blockId="NOObstacle" block="NOObstacle"
         NOOBSTACLE = 1
 
     }
@@ -528,29 +528,29 @@ namespace mibit_Car {
         S3
     }
     export enum CarState {
-        //% blockId="Car_Run" block="前行"
+        //% blockId="Car_Run" block="Car_Run"
         Car_Run = 1,
-        //% blockId="Car_Back" block="后退"
+        //% blockId="Car_Back" block="Car_Back"
         Car_Back = 2,
-        //% blockId="Car_Left" block="左转"
+        //% blockId="Car_Left" block="Car_Left"
         Car_Left = 3,
-        //% blockId="Car_Right" block="右转"
+        //% blockId="Car_Right" block="Car_Right"
         Car_Right = 4,
-        //% blockId="Car_Stop" block="停止"
+        //% blockId="Car_Stop" block="Car_Stop"
         Car_Stop = 5,
-        //% blockId="Car_SpinLeft" block="原地左旋"
+        //% blockId="Car_SpinLeft" block="Car_SpinLeft"
         Car_SpinLeft = 6,
-        //% blockId="Car_SpinRight" block="原地右旋"
+        //% blockId="Car_SpinRight" block="Car_SpinRight"
         Car_SpinRight = 7
     }
     export enum AloneState {
-        //% blockId="Right_Z_Motor" block="右侧电机正转"
+        //% blockId="Right_Z_Motor" block="Right_Z_Motor"
         Right_Z_Motor = 1,
-        //% blockId="Right_F_Motor" block="右侧电机反转"
+        //% blockId="Right_F_Motor" block="Right_F_Motor"
         Right_F_Motor = 2,
-        //% blockId="Left_Z_Motor" block="左侧电机正转"
+        //% blockId="Left_Z_Motor" block="Left_Z_Motor"
         Left_Z_Motor = 3,
-        //% blockId="Left_F_Motor" block="左侧电机反转"
+        //% blockId="Left_F_Motor" block="Left_F_Motor"
         Left_F_Motor = 4
     }
 
@@ -823,7 +823,7 @@ namespace mibit_Car {
      * *****************************************************************
      * @param index
      */
-    //% blockId=mibit_RGB_Car_Big2 block="小车RGB探照灯|选择车灯颜色 %value"
+    //% blockId=mibit_RGB_Car_Big2 block="RGB car LED|select LED color %value"
     //% weight=101
     //% blockGap=10
     //% color="#C814B8"
@@ -881,7 +881,7 @@ namespace mibit_Car {
             }
         }
     }
-    //% blockId=mibit_RGB_Car_Big block="小车RGB探照灯|红色 %value1|绿色 %value2|蓝色 %value3"
+    //% blockId=mibit_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
     //% weight=100
     //% blockGap=10
     //% color="#C814B8"
@@ -906,7 +906,7 @@ namespace mibit_Car {
 
     }
 
-    //% blockId=mibit_RGB_Car_Program block="七彩流水灯"
+    //% blockId=mibit_RGB_Car_Program block="colorful water light"
     //% weight=99
     //% blockGap=10
     //% color="#C814B8"
@@ -920,7 +920,7 @@ namespace mibit_Car {
     }
 
 
-    //% blockId=mibit_ultrasonic_car block="超声波返回(cm)"
+    //% blockId=mibit_ultrasonic_car block="return ultrasonic value（cm）"
     //% color="#006400"
     //% weight=98
     //% blockGap=10
@@ -939,7 +939,7 @@ namespace mibit_Car {
         return Math.idiv(d, 58);
     }
 
-    //% blockId=mibit_Music_Car block="小车音乐播放|%index"
+    //% blockId=mibit_Music_Car block="playing music|%index"
     //% weight=97
     //% blockGap=10
     //% color="#006400"
@@ -968,7 +968,7 @@ namespace mibit_Car {
             case enMusic.power_down: music.beginMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once); break;
         }
     }
-    //% blockId=mibit_Servo_Car block="小车舵机|编号 %num|角度 %value"
+    //% blockId=mibit_Servo_Car block="servo|number %num|angle %value"
     //% weight=96
     //% blockGap=10
     //% color="#006400"
@@ -983,7 +983,7 @@ namespace mibit_Car {
 
     }
 
-    //% blockId=mibit_Avoid_Sensor block="避障传感器|检测到 %value"
+    //% blockId=mibit_Avoid_Sensor block="obstacle avoidance sensor|detected %value"
     //% weight=95
     //% blockGap=10
     //% color="#006400"
@@ -1023,7 +1023,7 @@ namespace mibit_Car {
         return temp;
 
     }
-    //% blockId=mibit_Line_Sensor block="巡线传感器|位置 %direct|检测到 %value"
+    //% blockId=mibit_Line_Sensor block="line following sensor|position %direct|detected %value"
     //% weight=94
     //% blockGap=10
     //% color="#006400"
@@ -1068,7 +1068,7 @@ namespace mibit_Car {
         return temp;
 
     }
-    //% blockId=mibit_CarCtrl block="小车控制|%index"
+    //% blockId=mibit_CarCtrl block="CarCtrl|%index"
     //% weight=93
     //% blockGap=10
     //% color="#006400"
@@ -1084,7 +1084,7 @@ namespace mibit_Car {
             case CarState.Car_SpinRight: Car_spinright(255); break;
         }
     }
-    //% blockId=mibit_CarCtrlSpeed block="小车控制|%index|速度 %speed"
+    //% blockId=mibit_CarCtrlSpeed block="CarCtrl|%index|speed %speed"
     //% weight=92
     //% blockGap=10
     //% speed.min=0 speed.max=255
@@ -1101,7 +1101,7 @@ namespace mibit_Car {
             case CarState.Car_SpinRight: Car_spinright(speed); break;
         }
     }
-    //% blockId=mibit_AloneCtrlSpeed block="单独电机|%index|速度 %speed"
+    //% blockId=mibit_AloneCtrlSpeed block="AloneMotor|%index|Speed %speed"
     //% weight=91
     //% blockGap=10
     //% speed.min=0 speed.max=255
