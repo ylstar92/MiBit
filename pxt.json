@@ -14,7 +14,7 @@
         "README.md",
         "main.ts",
         "_locales/zh/mibit-strings.json",
-        "_locales/en/mibit-en-strings.json"
+        "_locales/en/mibit-strings.json"
 
     ],
     "testFiles": [
