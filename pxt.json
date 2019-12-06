@@ -13,7 +13,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/zh/mibit-strings.json"
+        "_locales/zh-cn/mibit-strings.json"
 
     ],
     "testFiles": [

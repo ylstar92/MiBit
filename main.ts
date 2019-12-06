@@ -38,7 +38,7 @@ namespace mibit_Display {
         ON =1
     }
 
-    //% blockId=mibit_LED1 block="light|pin %pin|state %value"
+    //% blockId=mibit_Display_LED1 block="light|pin %pin|state %value"
     //% weight=5
     //% blockGap=8
     //% color="#C814B8"
@@ -49,7 +49,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_LED2 block="light|pin %pin|brightness %value"
+    //% blockId=mibit_Display_LED2 block="light|pin %pin|brightness %value"
     //% weight=4
     //% blockGap=8
     //% color="#C814B8"
@@ -61,7 +61,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_BreathLED block="Breathing light|pin %pin"
+    //% blockId=mibit_Display_BreathLED block="Breathing light|pin %pin"
     //% weight=3
     //% blockGap=8
     //% color="#C814B8"
@@ -82,7 +82,7 @@ namespace mibit_Display {
 
     }
 
-    //% blockId=mibit_RGB block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|red %value1|green %value2|blue %value3"
+    //% blockId=mibit_Display_RGB block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|red %value1|green %value2|blue %value3"
     //% weight=2
     //% blockGap=8
     //% color="#C814B8"
@@ -95,7 +95,7 @@ namespace mibit_Display {
         pins.analogWritePin(pin3, value3 * 1024 / 256);
 
     }
-    //% blockId=mibit_RGB2 block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|display %value"
+    //% blockId=mibit_Display_RGB2 block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|display %value"
     //% weight=1
     //% blockGap=8
     //% color="#C814B8"
@@ -178,7 +178,7 @@ namespace mibit_Sensor {
     }
     
 
-    //% blockId=mibit_Voice_Sensor block="sound sensor|pin %pin|return %value"
+    //% blockId=mibit_Sensor_Voice_Sensor block="sound sensor|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -203,7 +203,7 @@ namespace mibit_Sensor {
             control.waitMicros(13);
         }
     }
-    //% blockId=mibit_IR_Sensor block="infrared sensor|pin %pin|  |%value|obstacle"
+    //% blockId=mibit_Sensor_IR_Sensor block="infrared sensor|pin %pin|  |%value|obstacle"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -221,7 +221,7 @@ namespace mibit_Sensor {
 
     }
 
-    //% blockId=mibit_IR_Send block="Infrared emission|pin %pin"
+    //% blockId=mibit_Sensor_IR_Send block="Infrared emission|pin %pin"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -233,7 +233,7 @@ namespace mibit_Sensor {
 
     }
    
-    //% blockId=mibit_ultrasonic block="ultrasonic|trig pin %Trig|echo pin %Echo"
+    //% blockId=mibit_Sensor_ultrasonic block="ultrasonic|trig pin %Trig|echo pin %Echo"
     //% color="#87CEEB"
     //% weight=100
     //% blockGap=10
@@ -289,7 +289,7 @@ namespace mibit_Input {
         Realse = 1
     }
 
-    //% blockId=mibit_TouchPad block="touch switch|pin %pin|return %value"
+    //% blockId=mibit_Input_TouchPad block="touch switch|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -305,7 +305,7 @@ namespace mibit_Input {
         }
 
     }
-    //% blockId=mibit_Rocker block="joystick|VRX %pin1|VRY %pin2|SW %pin3|return %value"
+    //% blockId=mibit_Input_Rocker block="joystick|VRX %pin1|VRY %pin2|SW %pin3|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -347,7 +347,7 @@ namespace mibit_Input {
 
     }
 
-    //% blockId=mibit_Button block="button|pin %pin|return %value"
+    //% blockId=mibit_Input_Button block="button|pin %pin|return %value"
     //% weight=100
     //% blockGap=10
     //% color="#808080"
@@ -379,7 +379,7 @@ namespace mibit_Music {
         Beep
     }
 
-    //% blockId=mibit_Buzzer block="active buzzer|pin %pin|value %value"
+    //% blockId=mibit_Music_Buzzer block="active buzzer|pin %pin|value %value"
     //% weight=100
     //% blockGap=10 
     //% color="#D2691E"
@@ -401,7 +401,7 @@ namespace mibit_Music {
 //% color="#0000CD" weight=21 icon="\uf185"
 namespace mibit_Motor {
 
-    //% blockId=mibit_Fan block="fan|pin %pin|speed %value"
+    //% blockId=mibit_Motor_Fan block="fan|pin %pin|speed %value"
     //% weight=100
     //% blockGap=10
     //% color="#0000CD"
@@ -413,7 +413,7 @@ namespace mibit_Motor {
 
     }
 
-    //% blockId=mibit_Servo block="servo|pin %pin|angle %value"
+    //% blockId=mibit_Motor_Servo block="servo|pin %pin|angle %value"
     //% weight=100
     //% blockGap=10
     //% color="#0000CD"
@@ -823,7 +823,7 @@ namespace mibit_Car {
      * *****************************************************************
      * @param index
      */
-    //% blockId=mibit_RGB_Car_Big2 block="RGB car LED|select LED color %value"
+    //% blockId=mibit_Car_RGB_Car_Big2 block="RGB car LED|select LED color %value"
     //% weight=101
     //% blockGap=10
     //% color="#C814B8"
@@ -881,7 +881,7 @@ namespace mibit_Car {
             }
         }
     }
-    //% blockId=mibit_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
+    //% blockId=mibit_Car_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
     //% weight=100
     //% blockGap=10
     //% color="#C814B8"
@@ -906,7 +906,7 @@ namespace mibit_Car {
 
     }
 
-    //% blockId=mibit_RGB_Car_Program block="colorful water light"
+    //% blockId=mibit_Car_RGB_Car_Program block="colorful water light"
     //% weight=99
     //% blockGap=10
     //% color="#C814B8"
@@ -920,7 +920,7 @@ namespace mibit_Car {
     }
 
 
-    //% blockId=mibit_ultrasonic_car block="return ultrasonic value（cm）"
+    //% blockId=mibit_Car_ultrasonic_car block="return ultrasonic value（cm）"
     //% color="#006400"
     //% weight=98
     //% blockGap=10
@@ -939,7 +939,7 @@ namespace mibit_Car {
         return Math.idiv(d, 58);
     }
 
-    //% blockId=mibit_Music_Car block="playing music|%index"
+    //% blockId=mibit_Car_Music_Car block="playing music|%index"
     //% weight=97
     //% blockGap=10
     //% color="#006400"
@@ -968,7 +968,7 @@ namespace mibit_Car {
             case enMusic.power_down: music.beginMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once); break;
         }
     }
-    //% blockId=mibit_Servo_Car block="servo|number %num|angle %value"
+    //% blockId=mibit_Car_Servo_Car block="servo|number %num|angle %value"
     //% weight=96
     //% blockGap=10
     //% color="#006400"
@@ -983,7 +983,7 @@ namespace mibit_Car {
 
     }
 
-    //% blockId=mibit_Avoid_Sensor block="obstacle avoidance sensor|detected %value"
+    //% blockId=mibit_Car_Avoid_Sensor block="obstacle avoidance sensor|detected %value"
     //% weight=95
     //% blockGap=10
     //% color="#006400"
@@ -1023,7 +1023,7 @@ namespace mibit_Car {
         return temp;
 
     }
-    //% blockId=mibit_Line_Sensor block="line following sensor|position %direct|detected %value"
+    //% blockId=mibit_Car_Line_Sensor block="line following sensor|position %direct|detected %value"
     //% weight=94
     //% blockGap=10
     //% color="#006400"
@@ -1068,7 +1068,7 @@ namespace mibit_Car {
         return temp;
 
     }
-    //% blockId=mibit_CarCtrl block="CarCtrl|%index"
+    //% blockId=mibit_Car_CarCtrl block="CarCtrl|%index"
     //% weight=93
     //% blockGap=10
     //% color="#006400"
@@ -1084,7 +1084,7 @@ namespace mibit_Car {
             case CarState.Car_SpinRight: Car_spinright(255); break;
         }
     }
-    //% blockId=mibit_CarCtrlSpeed block="CarCtrl|%index|speed %speed"
+    //% blockId=mibit_Car_CarCtrlSpeed block="CarCtrl|%index|speed %speed"
     //% weight=92
     //% blockGap=10
     //% speed.min=0 speed.max=255
@@ -1101,7 +1101,7 @@ namespace mibit_Car {
             case CarState.Car_SpinRight: Car_spinright(speed); break;
         }
     }
-    //% blockId=mibit_AloneCtrlSpeed block="AloneMotor|%index|Speed %speed"
+    //% blockId=mibit_Car_AloneCtrlSpeed block="AloneMotor|%index|Speed %speed"
     //% weight=91
     //% blockGap=10
     //% speed.min=0 speed.max=255
