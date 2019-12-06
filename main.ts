@@ -5,7 +5,7 @@ load dependency
 "MiBit": "file:../pxt-mibti"
 */
 
-//% color="#006400" weight=20 icon="\uf1b9"
+//% color="#87CEEB" weight=20 icon="\uf1b9"
 namespace MiBit {
 
     const PCA9685_ADD = 0x41
@@ -101,8 +101,7 @@ namespace MiBit {
         
         S1 = 1,
         S2,
-        S3,
-        S4
+        S3
     }
     export enum CarState {
         //% blockId="Car_Run" block="Run"
@@ -371,12 +370,99 @@ namespace MiBit {
     /**
      * *****************************************************************
      * @param index
+     */
+    //% blockId=HelloBot_RGB_Car_Big2 block="RGB car LED|select LED color %value"
+    //% weight=101
+    //% blockGap=10
+    //% color="#87CEEB"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RGB_Car_Big2(value: enColor): void {
+
+        switch (value) {
+            case enColor.OFF: {
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 0);
+                break;
+            }
+            case enColor.Red: {
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 0);
+                break;
+            }
+            case enColor.Green: {
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 0);
+                break;
+            }
+            case enColor.Blue: {
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 4095);
+                break;
+            }
+            case enColor.White: {
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 4095);
+                break;
+            }
+            case enColor.Cyan: {
+                setPwm(0, 0, 0);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 4095);
+                break;
+            }
+            case enColor.Pinkish: {
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 0);
+                setPwm(2, 0, 4095);
+                break;
+            }
+            case enColor.Yellow: {
+                setPwm(0, 0, 4095);
+                setPwm(1, 0, 4095);
+                setPwm(2, 0, 0);
+                break;
+            }
+        }
+    }
+    //% blockId=HelloBot_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
+    //% weight=100
+    //% blockGap=10
+    //% color="#87CEEB"
+    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function RGB_Car_Big(value1: number, value2: number, value3: number): void {
+
+        let R = value1 * 16;
+        let G = value2 * 16;
+        let B = value3 * 16;
+
+        if (R > 4096)
+            R = 4095;
+        if (G > 4096)
+            G = 4095;
+        if (B > 4096)
+            B = 4095;
+
+        setPwm(0, 0, R);
+        setPwm(1, 0, G);
+        setPwm(2, 0, B);
+
+    }
+
+    /**
+     * *****************************************************************
+     * @param index
      */   
 
     //% blockId=HelloBot_RGB_Car_Program block="RGB_Car_Program"
     //% weight=99
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Car_Program(): neopixel.Strip {
          
@@ -390,7 +476,7 @@ namespace MiBit {
     //% blockId=HelloBot_Music_Car block="Music_Car|%index"
     //% weight=95
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function Music_Car(index: enMusic): void {
         switch (index) {
@@ -420,7 +506,7 @@ namespace MiBit {
     //% blockId=HelloBot_Servo_Car block="Servo_Car|num %num|value %value"
     //% weight=94
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
     export function Servo_Car(num: enServo, value: number): void {
@@ -435,7 +521,7 @@ namespace MiBit {
     //% blockId=HelloBot_CarCtrl block="CarCtrl|%index"
     //% weight=93
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function CarCtrl(index: CarState): void {
         switch (index) {
@@ -453,7 +539,7 @@ namespace MiBit {
     //% weight=92
     //% blockGap=10
     //% speed.min=0 speed.max=255
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function CarCtrlSpeed(index: CarState, speed: number): void {
         switch (index) {
@@ -471,7 +557,7 @@ namespace MiBit {
     //% weight=91
     //% blockGap=10
     //% speed1.min=0 speed1.max=255 speed2.min=0 speed2.max=255
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
     export function CarCtrlSpeed2(index: CarState, speed1: number, speed2: number): void {
         switch (index) {
@@ -489,7 +575,7 @@ namespace MiBit {
     //% blockId=HelloBot_Line_Sensor block="Line_Sensor|direct %direct|value %value"
     //% weight=89
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Line_Sensor(direct: enPos, value: enLineState): boolean {
 
@@ -533,7 +619,7 @@ namespace MiBit {
     }
         
 	//% blockId=HelloBot_ultrasonic_car block="ultrasonic return distance(cm)"
-    //% color="#006400"
+    //% color="#87CEEB"
     //% weight=88
     //% blockGap=10
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -555,7 +641,7 @@ namespace MiBit {
     //% blockId=HelloBot_Avoid_Sensor block="Avoid_Sensor|direct %direct|value %value"
     //% weight=87
     //% blockGap=10
-    //% color="#006400"
+    //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
     export function Avoid_Sensor(direct: enPos, value: enAvoidState): boolean {
 
