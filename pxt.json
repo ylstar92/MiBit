@@ -1,21 +1,24 @@
 {
     "name": "MiBit",
-    "version": "1.1.0",
-    "description": "Extension for XR-Robot micro:bit",
+    "version": "2.0.1",
+    "description": "Extension for XiaoRGEEK MiBit 2.0.1",
     "license": "MIT",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:microsoft/pxt-neopixel#v0.3.10",
-        "mibit_IR": "github:XiaoRGEEK/MiBit_IR"
+        "neopixel": "github:991693552/pxt-neopixel",
+        "Mbit_IR":  "github:XiaoRGEEK/MiBit_IR"
+	
+
     },
     "files": [
         "README.md",
         "main.ts",
-        "_locales/zh-cn/MiBit-strings.json"
+        "_locales/zh-cn/MiBit-strings.json",
+        "_locales/zh-tw/MiBit-strings.json"
+
     ],
     "testFiles": [
         "test.ts"
     ],
     "public": true
-    "preferredEditor": "tsprj"
 }

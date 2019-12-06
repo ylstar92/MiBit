@@ -1,434 +1,12 @@
-/*
-R
+﻿/*
+Copyright (C): 2010-2019, Shenzhen XiaoR Tech
 modified from liusen
 load dependency
-"mibit": "file:../pxt-mibit"
+"MiBit": "file:../pxt-mibti"
 */
 
-
-
-//% color="#C814B8" weight=25 icon="\uf1d4"
-namespace mibit_Display {
-    
-    export enum enColor {
-
-        //% blockId="OFF" block="OFF"
-        OFF = 0,
-        //% blockId="Red" block="Red"
-        Red,
-        //% blockId="Green" block="Green"
-        Green,
-        //% blockId="Blue" block="Blue"
-        Blue,
-        //% blockId="White" block="White"
-        White,
-        //% blockId="Cyan" block="Cyan"
-        Cyan,
-        //% blockId="Pinkish" block="Pinkish"
-        Pinkish,
-        //% blockId="Yellow" block="Yellow"
-        Yellow,
-
-    }
-    export enum enLED1 {
-        
-        //% blockId="OFF" block="OFF"
-        OFF = 0,
-        //% blockId="ON" block="ON"
-        ON =1
-    }
-
-    //% blockId=mibit_Display_LED1 block="light|pin %pin|state %value"
-    //% weight=5
-    //% blockGap=8
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=1
-    export function LED1(pin: DigitalPin, value: enLED1): void {
-
-        pins.digitalWritePin(pin, value);
-
-    }
-
-    //% blockId=mibit_Display_LED2 block="light|pin %pin|brightness %value"
-    //% weight=4
-    //% blockGap=8
-    //% color="#C814B8"
-    //% value.min=0 value.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=2
-    export function LED2(pin: AnalogPin, value: number): void {
-
-        pins.analogWritePin(pin, value * 1024 / 256);
-
-    }
-
-    //% blockId=mibit_Display_BreathLED block="Breathing light|pin %pin"
-    //% weight=3
-    //% blockGap=8
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=3
-    export function BreathLED(pin: AnalogPin): void {
-
-        for (let i: number = 0; i < 1023; i++) {
-            pins.analogWritePin(pin, i);
-            //basic.pause(1);
-            control.waitMicros(1000);
-        }
-        basic.pause(10);
-        for (let i: number = 1023; i > 0; i--) {
-            pins.analogWritePin(pin, i);
-            //basic.pause(1);
-            control.waitMicros(1000);
-        }
-
-    }
-
-    //% blockId=mibit_Display_RGB block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|red %value1|green %value2|blue %value3"
-    //% weight=2
-    //% blockGap=8
-    //% color="#C814B8"
-    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value1: number, value2: number, value3: number): void {
-
-        pins.analogWritePin(pin1, value1 * 1024 / 256);
-        pins.analogWritePin(pin2, value2 * 1024 / 256);
-        pins.analogWritePin(pin3, value3 * 1024 / 256);
-
-    }
-    //% blockId=mibit_Display_RGB2 block="RGB light|pin R %pin1|pin G %pin2|pin B %pin3|display %value"
-    //% weight=1
-    //% blockGap=8
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB2(pin1: DigitalPin, pin2: DigitalPin, pin3: DigitalPin, value: enColor): void {
-
-        switch (value) {
-            case enColor.OFF: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 0);
-                break;
-            }
-            case enColor.Red: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 0);
-                break;
-            }
-            case enColor.Green: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 0);
-                break;
-            }
-            case enColor.Blue: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 1);
-                break;
-            }
-            case enColor.White: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 1);
-                break;
-            }
-            case enColor.Cyan: {
-                pins.digitalWritePin(pin1, 0);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 1);
-                break;
-            }
-            case enColor.Pinkish: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 0);
-                pins.digitalWritePin(pin3, 1);
-                break;
-            }
-            case enColor.Yellow: {
-                pins.digitalWritePin(pin1, 1);
-                pins.digitalWritePin(pin2, 1);
-                pins.digitalWritePin(pin3, 0);
-                break;
-            }
-        }
-
-    }
-   
-}
-/*****************************************************************************************************************************************
- *  Sensor ***************************************************************************************************************************** 
- ****************************************************************************************************************************************/
-
-//% color="#87CEEB" weight=24 icon="\uf1b6"
-namespace mibit_Sensor {
-
-    export enum enVoice {
-        //% blockId="Voice" block="Voice"
-        Voice = 0,
-        //% blockId="NoVoice" block="NoVoice"
-        NoVoice = 1
-    }
-
-    export enum enIR {
-        //% blockId="Get" block="Get"
-        Get = 0,
-        //% blockId="NoGet" block="NoGet"
-        NoGet = 1
-    }
-    
-
-    //% blockId=mibit_Sensor_Voice_Sensor block="sound sensor|pin %pin|return %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Voice_Sensor(pin: DigitalPin, value: enVoice): boolean {
-
-        pins.setPull(pin, PinPullMode.PullUp);
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-
-    function IR_send_38k() {
-        for (let i: number = 0; i < 8; i++) {
-            pins.digitalWritePin(DigitalPin.P9, 1);
-            control.waitMicros(13);
-            pins.digitalWritePin(DigitalPin.P9, 0);
-            control.waitMicros(13);
-        }
-    }
-    //% blockId=mibit_Sensor_IR_Sensor block="infrared sensor|pin %pin|  |%value|obstacle"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function IR_Sensor(pin: DigitalPin, value: enIR): boolean {
-
-        pins.setPull(pin, PinPullMode.PullUp);
-        //IR_send_38k();
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-
-    //% blockId=mibit_Sensor_IR_Send block="Infrared emission|pin %pin"
-    //% weight=100
-    //% blockGap=10
-    //% color="#87CEEB"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function IR_Send(pin: DigitalPin): void {
-
-        
-        IR_send_38k();
-
-    }
-   
-    //% blockId=mibit_Sensor_ultrasonic block="ultrasonic|trig pin %Trig|echo pin %Echo"
-    //% color="#87CEEB"
-    //% weight=100
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic(Trig: DigitalPin, Echo: DigitalPin): number {
-
-        // send pulse
-        pins.setPull(Trig, PinPullMode.PullNone);
-        pins.digitalWritePin(Trig, 0);
-        control.waitMicros(2);
-        pins.digitalWritePin(Trig, 1);
-        control.waitMicros(10);
-        pins.digitalWritePin(Trig, 0);
-
-        // read pulse
-        let d = pins.pulseIn(Echo, PulseValue.High, 23200);
-        return d / 58;
-    }
-}
-
-/*****************************************************************************************************************************************
- *  Input *****************************************************************************************************************************
- ****************************************************************************************************************************************/
-
-//% color="#808080" weight=23 icon="\uf11c"
-namespace mibit_Input {
-
-    export enum enRocker {
-        //% blockId="Nostate" block="Nostate"
-        Nostate = 0,
-        //% blockId="Up" block="Up"
-        Up,
-        //% blockId="Down" block="Down"
-        Down,
-        //% blockId="Left" block="Left"
-        Left,
-        //% blockId="Right" block="Right"
-        Right,
-        //% blockId="Press" block="Press"
-        Press
-    }
-
-    export enum enTouch {
-        //% blockId="NoTouch" block="NoTouch"
-        NoTouch = 0,
-        //% blockId="Touch" block="Touch"
-        Touch = 1
-    }
-    export enum enButton {
-        //% blockId="Press" block="Press"
-        Press = 0,
-        //% blockId="Realse" block="Realse"
-        Realse = 1
-    }
-
-    //% blockId=mibit_Input_TouchPad block="touch switch|pin %pin|return %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#808080"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-    export function TouchPad(pin: DigitalPin, value: enTouch): boolean {
-
-        pins.setPull(pin, PinPullMode.PullUp);
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
-    //% blockId=mibit_Input_Rocker block="joystick|VRX %pin1|VRY %pin2|SW %pin3|return %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#808080"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=6
-    export function Rocker(pin1: AnalogPin, pin2: AnalogPin, pin3: AnalogPin, value: enRocker): boolean {
-
-        //pins.setPull(pin3, PinPullMode.PullUp);
-        let x = pins.analogReadPin(pin1);
-        let y = pins.analogReadPin(pin2);
-        let z = pins.analogReadPin(pin3);
-        let now_state = enRocker.Nostate;
-
-        if (x <= 20) // 上
-        {
-
-            now_state = enRocker.Up;
-
-        }
-        if (x >= 1000) //
-        {
-
-            now_state = enRocker.Down;
-        }
-        if (y <= 50) //右
-        {
-            now_state = enRocker.Right;
-        }
-        if (y >= 1000) //左
-        {
-            now_state = enRocker.Left;
-        }
-        if (z <= 20)
-            now_state = enRocker.Press;
-        
-        if (now_state == value)
-            return true;
-        else
-            return false;
-
-    }
-
-    //% blockId=mibit_Input_Button block="button|pin %pin|return %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#808080"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=5
-    export function Button(pin: DigitalPin, value: enButton): boolean {
-
-        pins.setPull(pin, PinPullMode.PullUp);
-        if (pins.digitalReadPin(pin) == value) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }  
-}
-
-/*****************************************************************************************************************************************
- *    Music *****************************************************************************************************************************
- ****************************************************************************************************************************************/
-
-//% color="#D2691E" weight=22 icon="\uf001"
-namespace mibit_Music {
-    export enum enBuzzer {
-
-        //% blockId="NoBeep" block="NoBeep"
-        NoBeep = 0,
-        //% blockId="Beep" block="Beep"
-        Beep
-    }
-
-    //% blockId=mibit_Music_Buzzer block="active buzzer|pin %pin|value %value"
-    //% weight=100
-    //% blockGap=10 
-    //% color="#D2691E"
-    //% value.min=0 value.max=1
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=8
-    export function Buzzer(pin: DigitalPin, value: enBuzzer): void {
-
-        pins.setPull(pin, PinPullMode.PullNone);
-        pins.digitalWritePin(pin, value);
-
-    }
-
-}
-
-/*****************************************************************************************************************************************
- *    Motor *****************************************************************************************************************************
- ****************************************************************************************************************************************/
-
-//% color="#0000CD" weight=21 icon="\uf185"
-namespace mibit_Motor {
-
-    //% blockId=mibit_Motor_Fan block="fan|pin %pin|speed %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#0000CD"
-    //% value.min=0 value.max=1023
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-    export function Fan(pin: AnalogPin, value: number): void {
-
-        pins.analogWritePin(pin, value);
-
-    }
-
-    //% blockId=mibit_Motor_Servo block="servo|pin %pin|angle %value"
-    //% weight=100
-    //% blockGap=10
-    //% color="#0000CD"
-    //% value.min=0 value.max=180
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
-    export function Servo(pin: AnalogPin, value: number): void {
-
-        pins.servoWritePin(pin, value);
-
-    }
-
-}
-
 //% color="#006400" weight=20 icon="\uf1b9"
-namespace mibit_Car {
+namespace MiBit {
 
     const PCA9685_ADD = 0x41
     const MODE1 = 0x00
@@ -499,59 +77,48 @@ namespace mibit_Car {
     export enum enPos {
 
         //% blockId="LeftState" block="LeftState"
-        LeftState = 1,
+        LeftState = 0,
         //% blockId="RightState" block="RightState"
-        RightState = 0
+        RightState = 1
     }
 
     export enum enLineState {
-        //% blockId="White" block="White"
-        White = 0,
-        //% blockId="Black" block="Black"
-        Black = 1
-
+        //% blockId="White" block="White Line"
+        White = 1,
+        //% blockId="Black" block="Black Line"
+        Black = 0
     }
-    
+      
     export enum enAvoidState {
-        //% blockId="Obstacle" block="Obstacle"
-        OBSTACLE = 0,
-        //% blockId="NOObstacle" block="NOObstacle"
-        NOOBSTACLE = 1
+        //% blockId="OBSTACLE" block="Obstacle"
+        OBSTACLE = 1,
+        //% blockId="NOOBSTACLE" block="No Obstacle"
+        NOOBSTACLE = 0
 
     }
-
     
     export enum enServo {
         
         S1 = 1,
         S2,
-        S3
+        S3,
+        S4
     }
     export enum CarState {
-        //% blockId="Car_Run" block="Car_Run"
+        //% blockId="Car_Run" block="Run"
         Car_Run = 1,
-        //% blockId="Car_Back" block="Car_Back"
+        //% blockId="Car_Back" block="Back"
         Car_Back = 2,
-        //% blockId="Car_Left" block="Car_Left"
+        //% blockId="Car_Left" block="Left"
         Car_Left = 3,
-        //% blockId="Car_Right" block="Car_Right"
+        //% blockId="Car_Right" block="Right"
         Car_Right = 4,
-        //% blockId="Car_Stop" block="Car_Stop"
+        //% blockId="Car_Stop" block="Stop"
         Car_Stop = 5,
-        //% blockId="Car_SpinLeft" block="Car_SpinLeft"
+        //% blockId="Car_SpinLeft" block="SpinLeft"
         Car_SpinLeft = 6,
-        //% blockId="Car_SpinRight" block="Car_SpinRight"
+        //% blockId="Car_SpinRight" block="SpinRight"
         Car_SpinRight = 7
-    }
-    export enum AloneState {
-        //% blockId="Right_Z_Motor" block="Right_Z_Motor"
-        Right_Z_Motor = 1,
-        //% blockId="Right_F_Motor" block="Right_F_Motor"
-        Right_F_Motor = 2,
-        //% blockId="Left_Z_Motor" block="Left_Z_Motor"
-        Left_Z_Motor = 3,
-        //% blockId="Left_F_Motor" block="Left_F_Motor"
-        Left_F_Motor = 4
     }
 
     function i2cwrite(addr: number, reg: number, value: number) {
@@ -610,21 +177,27 @@ namespace mibit_Car {
         pins.i2cWriteBuffer(PCA9685_ADD, buf);
     }
 
+    function Car_run(speed1: number, speed2: number) {
 
-    function Car_run(speed: number) {
-
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
+        }
+        if (speed2 >= 4096) {
+            speed2 = 4095
+        }
+        if (speed2 <= 350) {
+            speed2 = 350
         }
 
-        setPwm(12, 0, speed);
+        setPwm(12, 0, speed1);
         setPwm(13, 0, 0);
 
-        setPwm(15, 0, speed);
+        setPwm(15, 0, speed2);
         setPwm(14, 0, 0);
         //pins.digitalWritePin(DigitalPin.P16, 1);
        // pins.analogWritePin(AnalogPin.P1, 1023-speed); //速度控制
@@ -632,85 +205,29 @@ namespace mibit_Car {
        // pins.analogWritePin(AnalogPin.P0, speed);//速度控制
        // pins.digitalWritePin(DigitalPin.P8, 0);
     }
-   function Left_Z_run(speed: number) {
 
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+    function Car_back(speed1: number, speed2: number) {
+
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
         }
-
-        setPwm(12, 0, speed);
-        setPwm(13, 0, 0);
-
-        //setPwm(15, 0, 0);
-        //setPwm(14, 0, 0);
-    }
-   function Left_F_run(speed: number) {
-
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        if (speed2 >= 4096) {
+            speed2 = 4095
         }
-        if (speed <= 350) {
-            speed = 350
+        if (speed2 <= 350) {
+            speed2 = 350
         }
 
         setPwm(12, 0, 0);
-        setPwm(13, 0, speed);
-
-        //setPwm(15, 0, 0);
-        //setPwm(14, 0, 0);
-    }    
-     function Right_Z_run(speed: number) {
-
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
-        }
-        if (speed <= 350) {
-            speed = 350
-        }
-
-       // setPwm(12, 0, 0);
-       // setPwm(13, 0, 0);
-
-        setPwm(15, 0, speed);
-        setPwm(14, 0, 0);
-    }
-     function Right_F_run(speed: number) {
-
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
-        }
-        if (speed <= 350) {
-            speed = 350
-        }
-
-       // setPwm(12, 0, 0);
-       // setPwm(13, 0, 0);
+        setPwm(13, 0, speed1);
 
         setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
-    }    
-    function Car_back(speed: number) {
-
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
-        }
-        if (speed <= 350 && speed != 0) {
-            speed = 350
-        }
-
-        setPwm(12, 0, 0);
-        setPwm(13, 0, speed);
-
-        setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        setPwm(14, 0, speed2);
 
         //pins.digitalWritePin(DigitalPin.P16, 0);
         //pins.analogWritePin(AnalogPin.P1, speed); //速度控制
@@ -719,19 +236,27 @@ namespace mibit_Car {
         //pins.digitalWritePin(DigitalPin.P8, 1);
     }
 
-    function Car_left(speed: number) {
+    function Car_left(speed1: number, speed2: number) {
 
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350 && speed != 0) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
         }
+        if (speed2 >= 4096) {
+            speed2 = 4095
+        }
+        if (speed2 <= 350) {
+            speed2 = 350
+        }
+        
         setPwm(12, 0, 0);
         setPwm(13, 0, 0);
 
-        setPwm(15, 0, speed);
+        setPwm(15, 0, speed2);
         setPwm(14, 0, 0);
 
         //pins.analogWritePin(AnalogPin.P0, speed);
@@ -741,16 +266,24 @@ namespace mibit_Car {
         //pins.digitalWritePin(DigitalPin.P1, 0);
     }
 
-    function Car_right(speed: number) {
+    function Car_right(speed1: number, speed2: number) {
 
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350 && speed != 0) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
         }
-        setPwm(12, 0, speed);
+        if (speed2 >= 4096) {
+            speed2 = 4095
+        }
+        if (speed2 <= 350) {
+            speed2 = 350
+        }
+        
+        setPwm(12, 0, speed1);
         setPwm(13, 0, 0);
 
         setPwm(15, 0, 0);
@@ -775,19 +308,27 @@ namespace mibit_Car {
         //pins.digitalWritePin(DigitalPin.P1, 0);
     }
 
-    function Car_spinleft(speed: number) {
+    function Car_spinleft(speed1: number, speed2: number) {
 
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350 && speed != 0) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
         }
+        if (speed2 >= 4096) {
+            speed2 = 4095
+        }
+        if (speed2 <= 350) {
+            speed2 = 350
+        }        
+        
         setPwm(12, 0, 0);
-        setPwm(13, 0, speed);
+        setPwm(13, 0, speed1);
 
-        setPwm(15, 0, speed);
+        setPwm(15, 0, speed2);
         setPwm(14, 0, 0);
 
         //pins.analogWritePin(AnalogPin.P0, speed);
@@ -797,20 +338,28 @@ namespace mibit_Car {
         //pins.analogWritePin(AnalogPin.P1, speed);
     } 
 
-    function Car_spinright(speed: number) {
+    function Car_spinright(speed1: number, speed2: number) {
 
-        speed = speed * 16; // map 350 to 4096
-        if (speed >= 4096) {
-            speed = 4095
+        speed1 = speed1 * 16; // map 350 to 4096
+        speed2 = speed2 * 16;
+        if (speed1 >= 4096) {
+            speed1 = 4095
         }
-        if (speed <= 350 && speed != 0) {
-            speed = 350
+        if (speed1 <= 350) {
+            speed1 = 350
         }
-        setPwm(12, 0, speed);
+        if (speed2 >= 4096) {
+            speed2 = 4095
+        }
+        if (speed2 <= 350) {
+            speed2 = 350
+        }    
+            
+        setPwm(12, 0, speed1);
         setPwm(13, 0, 0);
 
         setPwm(15, 0, 0);
-        setPwm(14, 0, speed);
+        setPwm(14, 0, speed2);
         //pins.analogWritePin(AnalogPin.P0, 1023-speed);
         //pins.digitalWritePin(DigitalPin.P8, 1);
 
@@ -822,94 +371,12 @@ namespace mibit_Car {
     /**
      * *****************************************************************
      * @param index
-     */
-    //% blockId=mibit_Car_RGB_Car_Big2 block="RGB car LED|select LED color %value"
-    //% weight=101
-    //% blockGap=10
-    //% color="#C814B8"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Car_Big2(value: enColor): void {
+     */   
 
-        switch (value) {
-            case enColor.OFF: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Red: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Green: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                break;
-            }
-            case enColor.Blue: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.White: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Cyan: {
-                setPwm(0, 0, 0);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Pinkish: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 0);
-                setPwm(2, 0, 4095);
-                break;
-            }
-            case enColor.Yellow: {
-                setPwm(0, 0, 4095);
-                setPwm(1, 0, 4095);
-                setPwm(2, 0, 0);
-                break;
-            }
-        }
-    }
-    //% blockId=mibit_Car_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
-    //% weight=100
-    //% blockGap=10
-    //% color="#C814B8"
-    //% value1.min=0 value1.max=255 value2.min=0 value2.max=255 value3.min=0 value3.max=255
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function RGB_Car_Big(value1: number, value2: number, value3: number): void {
-
-        let R = value1 * 16;
-        let G = value2 * 16;
-        let B = value3 * 16;
-
-        if (R > 4096)
-            R = 4095;
-        if (G > 4096)
-            G = 4095;
-        if (B > 4096)
-            B = 4095;
-
-        setPwm(0, 0, R);
-        setPwm(1, 0, G);
-        setPwm(2, 0, B);
-
-    }
-
-    //% blockId=mibit_Car_RGB_Car_Program block="colorful water light"
+    //% blockId=HelloBot_RGB_Car_Program block="RGB_Car_Program"
     //% weight=99
     //% blockGap=10
-    //% color="#C814B8"
+    //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
     export function RGB_Car_Program(): neopixel.Strip {
          
@@ -917,30 +384,11 @@ namespace mibit_Car {
             yahStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB);
         }
         return yahStrip;  
-    }
-
-
-    //% blockId=mibit_Car_ultrasonic_car block="return ultrasonic value（cm）"
-    //% color="#006400"
-    //% weight=98
-    //% blockGap=10
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
-    export function Ultrasonic_Car(): number {
-       // send pulse
-        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-        control.waitMicros(2);
-        pins.digitalWritePin(DigitalPin.P14, 1);
-        control.waitMicros(10);
-        pins.digitalWritePin(DigitalPin.P14, 0);
-
-        // read pulse
-        const d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 500 * 58);
-        return Math.idiv(d, 58);
-    }
-
-    //% blockId=mibit_Car_Music_Car block="playing music|%index"
-    //% weight=97
+    }  
+    
+    
+    //% blockId=HelloBot_Music_Car block="Music_Car|%index"
+    //% weight=95
     //% blockGap=10
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
@@ -968,11 +416,12 @@ namespace mibit_Car {
             case enMusic.power_down: music.beginMelody(music.builtInMelody(Melodies.PowerDown), MelodyOptions.Once); break;
         }
     }
-    //% blockId=mibit_Car_Servo_Car block="servo|number %num|angle %value"
-    //% weight=96
+    
+    //% blockId=HelloBot_Servo_Car block="Servo_Car|num %num|value %value"
+    //% weight=94
     //% blockGap=10
     //% color="#006400"
-    //% num.min=1 num.max=3 value.min=0 value.max=180
+    //% num.min=1 num.max=4 value.min=0 value.max=180
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=9
     export function Servo_Car(num: enServo, value: number): void {
 
@@ -982,49 +431,63 @@ namespace mibit_Car {
         setPwm(num + 2, 0, pwm);
 
     }
-
-    //% blockId=mibit_Car_Avoid_Sensor block="obstacle avoidance sensor|detected %value"
-    //% weight=95
+    
+    //% blockId=HelloBot_CarCtrl block="CarCtrl|%index"
+    //% weight=93
     //% blockGap=10
     //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
-    export function Avoid_Sensor(value: enAvoidState): boolean {
-
-        let temp: boolean = false;
-        pins.digitalWritePin(DigitalPin.P9, 0);
-        switch (value) {
-            case enAvoidState.OBSTACLE: {
-                if (pins.analogReadPin(AnalogPin.P3) < 800) {
-                
-                    temp = true;
-                    setPwm(8, 0, 0);
-                }
-                else {                 
-                    temp = false;
-                    setPwm(8, 0, 4095);
-                }
-                break;
-            }
-
-            case enAvoidState.NOOBSTACLE: {
-                if (pins.analogReadPin(AnalogPin.P3) > 800) {
-
-                    temp = true;
-                    setPwm(8, 0, 4095);
-                }
-                else {
-                    temp = false;
-                    setPwm(8, 0, 0);
-                }
-                break;
-            }
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function CarCtrl(index: CarState): void {
+        switch (index) {
+            case CarState.Car_Run: Car_run(255, 255); break;
+            case CarState.Car_Back: Car_back(255, 255); break;
+            case CarState.Car_Left: Car_left(255, 255); break;
+            case CarState.Car_Right: Car_right(255, 255); break;
+            case CarState.Car_Stop: Car_stop(); break;
+            case CarState.Car_SpinLeft: Car_spinleft(255, 255); break;
+            case CarState.Car_SpinRight: Car_spinright(255, 255); break;
         }
-        pins.digitalWritePin(DigitalPin.P9, 1);
-        return temp;
-
     }
-    //% blockId=mibit_Car_Line_Sensor block="line following sensor|position %direct|detected %value"
-    //% weight=94
+    
+    //% blockId=HelloBot_CarCtrlSpeed block="CarCtrlSpeed|%index|speed %speed"
+    //% weight=92
+    //% blockGap=10
+    //% speed.min=0 speed.max=255
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function CarCtrlSpeed(index: CarState, speed: number): void {
+        switch (index) {
+            case CarState.Car_Run: Car_run(speed, speed); break;
+            case CarState.Car_Back: Car_back(speed, speed); break;
+            case CarState.Car_Left: Car_left(speed, speed); break;
+            case CarState.Car_Right: Car_right(speed, speed); break;
+            case CarState.Car_Stop: Car_stop(); break;
+            case CarState.Car_SpinLeft: Car_spinleft(speed, speed); break;
+            case CarState.Car_SpinRight: Car_spinright(speed, speed); break;
+        }
+    }
+    
+    //% blockId=HelloBot_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
+    //% weight=91
+    //% blockGap=10
+    //% speed1.min=0 speed1.max=255 speed2.min=0 speed2.max=255
+    //% color="#006400"
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
+    export function CarCtrlSpeed2(index: CarState, speed1: number, speed2: number): void {
+        switch (index) {
+            case CarState.Car_Run: Car_run(speed1, speed2); break;
+            case CarState.Car_Back: Car_back(speed1, speed2); break;
+            case CarState.Car_Left: Car_left(speed1, speed2); break;
+            case CarState.Car_Right: Car_right(speed1, speed2); break;
+            case CarState.Car_Stop: Car_stop(); break;
+            case CarState.Car_SpinLeft: Car_spinleft(speed1, speed2); break;
+            case CarState.Car_SpinRight: Car_spinright(speed1, speed2); break;
+        }
+    }    
+        
+    
+    //% blockId=HelloBot_Line_Sensor block="Line_Sensor|direct %direct|value %value"
+    //% weight=89
     //% blockGap=10
     //% color="#006400"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
@@ -1068,51 +531,67 @@ namespace mibit_Car {
         return temp;
 
     }
-    //% blockId=mibit_Car_CarCtrl block="CarCtrl|%index"
-    //% weight=93
-    //% blockGap=10
+        
+	//% blockId=HelloBot_ultrasonic_car block="ultrasonic return distance(cm)"
     //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
-    export function CarCtrl(index: CarState): void {
-        switch (index) {
-            case CarState.Car_Run: Car_back(255); break;
-            case CarState.Car_Back: Car_run(255); break;
-            case CarState.Car_Left: Car_left(255); break;
-            case CarState.Car_Right: Car_right(255); break;
-            case CarState.Car_Stop: Car_stop(); break;
-            case CarState.Car_SpinLeft: Car_spinleft(255); break;
-            case CarState.Car_SpinRight: Car_spinright(255); break;
-        }
+    //% weight=88
+    //% blockGap=10
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=4
+    export function Ultrasonic_Car(): number {
+
+        // send pulse       
+        pins.setPull(DigitalPin.P14, PinPullMode.PullNone);
+        pins.digitalWritePin(DigitalPin.P14, 0);
+        control.waitMicros(2);
+        pins.digitalWritePin(DigitalPin.P14, 1);
+        control.waitMicros(10);
+        pins.digitalWritePin(DigitalPin.P14, 0);
+
+        // read pulse
+        const d = pins.pulseIn(DigitalPin.P15, PulseValue.High, 500 * 58);
+        return Math.idiv(d, 58);
     }
-    //% blockId=mibit_Car_CarCtrlSpeed block="CarCtrl|%index|speed %speed"
-    //% weight=92
+
+    //% blockId=HelloBot_Avoid_Sensor block="Avoid_Sensor|direct %direct|value %value"
+    //% weight=87
     //% blockGap=10
-    //% speed.min=0 speed.max=255
     //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
-    export function CarCtrlSpeed(index: CarState, speed: number): void {
-        switch (index) {
-            case CarState.Car_Run: Car_back(speed); break;
-            case CarState.Car_Back: Car_run(speed); break;
-            case CarState.Car_Left: Car_left(speed); break;
-            case CarState.Car_Right: Car_right(speed); break;
-            case CarState.Car_Stop: Car_stop(); break;
-            case CarState.Car_SpinLeft: Car_spinleft(speed); break;
-            case CarState.Car_SpinRight: Car_spinright(speed); break;
+    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=12
+    export function Avoid_Sensor(direct: enPos, value: enAvoidState): boolean {
+
+        let temp: boolean = false;
+        pins.digitalWritePin(DigitalPin.P9, 0);
+        switch (value) {
+            case enAvoidState.OBSTACLE: {
+                if (pins.analogReadPin(AnalogPin.P3) < 800) {
+                
+                    temp = true;
+                    setPwm(8, 0, 0);
+                }
+                else {                 
+                    temp = false;
+                    setPwm(8, 0, 4095);
+                }
+                break;
+            }
+
+            case enAvoidState.NOOBSTACLE: {
+                if (pins.analogReadPin(AnalogPin.P3) > 800) {
+
+                    temp = true;
+                    setPwm(8, 0, 4095);
+                }
+                else {
+                    temp = false;
+                    setPwm(8, 0, 0);
+                }
+                break;
+            }
         }
+        pins.digitalWritePin(DigitalPin.P9, 1);
+        return temp;
+
     }
-    //% blockId=mibit_Car_AloneCtrlSpeed block="AloneMotor|%index|Speed %speed"
-    //% weight=91
-    //% blockGap=10
-    //% speed.min=0 speed.max=255
-    //% color="#006400"
-    //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
-    export function AloneCtrlSpeed(index: AloneState, speed: number): void {
-        switch (index) {
-            case AloneState.Right_Z_Motor: Left_F_run(speed); break;
-            case AloneState.Right_F_Motor: Left_Z_run(speed); break;
-            case AloneState.Left_Z_Motor: Right_F_run(speed); break;
-            case AloneState.Left_F_Motor: Right_Z_run(speed); break;
-        }
-    }    
+
+
 }

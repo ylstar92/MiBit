@@ -1,6 +1,6 @@
-# MiBit
+# HelloBot
 
-小二科技 基于micro:bit 控制器的MiBit机器人库 （深圳市小二极客科技有限公司）
+Extension for Yahboom HelloBot 2.0.1
 
 ## License
 
