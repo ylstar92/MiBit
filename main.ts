@@ -371,7 +371,7 @@ namespace MiBit {
      * *****************************************************************
      * @param index
      */
-    //% blockId=HelloBot_RGB_Car_Big2 block="RGB car LED|select LED color %value"
+    //% blockId=MiBit_RGB_Car_Big2 block="RGB car LED|select LED color %value"
     //% weight=101
     //% blockGap=10
     //% color="#87CEEB"
@@ -429,7 +429,7 @@ namespace MiBit {
             }
         }
     }
-    //% blockId=HelloBot_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
+    //% blockId=MiBit_RGB_Car_Big block="RGB car LED|red %value1|green %value2|blue %value3"
     //% weight=100
     //% blockGap=10
     //% color="#87CEEB"
@@ -459,7 +459,7 @@ namespace MiBit {
      * @param index
      */   
 
-    //% blockId=HelloBot_RGB_Car_Program block="RGB_Car_Program"
+    //% blockId=MiBit_RGB_Car_Program block="RGB_Car_Program"
     //% weight=99
     //% blockGap=10
     //% color="#87CEEB"
@@ -473,7 +473,7 @@ namespace MiBit {
     }  
     
     
-    //% blockId=HelloBot_Music_Car block="Music_Car|%index"
+    //% blockId=MiBit_Music_Car block="Music_Car|%index"
     //% weight=95
     //% blockGap=10
     //% color="#87CEEB"
@@ -503,7 +503,7 @@ namespace MiBit {
         }
     }
     
-    //% blockId=HelloBot_Servo_Car block="Servo_Car|num %num|value %value"
+    //% blockId=MiBit_Servo_Car block="Servo_Car|num %num|value %value"
     //% weight=94
     //% blockGap=10
     //% color="#87CEEB"
@@ -518,7 +518,7 @@ namespace MiBit {
 
     }
     
-    //% blockId=HelloBot_CarCtrl block="CarCtrl|%index"
+    //% blockId=MiBit_CarCtrl block="CarCtrl|%index"
     //% weight=93
     //% blockGap=10
     //% color="#87CEEB"
@@ -535,7 +535,7 @@ namespace MiBit {
         }
     }
     
-    //% blockId=HelloBot_CarCtrlSpeed block="CarCtrlSpeed|%index|speed %speed"
+    //% blockId=MiBit_CarCtrlSpeed block="CarCtrlSpeed|%index|speed %speed"
     //% weight=92
     //% blockGap=10
     //% speed.min=0 speed.max=255
@@ -553,7 +553,7 @@ namespace MiBit {
         }
     }
     
-    //% blockId=HelloBot_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
+    //% blockId=MiBit_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
     //% weight=91
     //% blockGap=10
     //% speed1.min=0 speed1.max=255 speed2.min=0 speed2.max=255
@@ -572,7 +572,7 @@ namespace MiBit {
     }    
         
     
-    //% blockId=HelloBot_Line_Sensor block="Line_Sensor|direct %direct|value %value"
+    //% blockId=MiBit_Line_Sensor block="Line_Sensor|direct %direct|value %value"
     //% weight=89
     //% blockGap=10
     //% color="#87CEEB"
@@ -618,7 +618,7 @@ namespace MiBit {
 
     }
         
-	//% blockId=HelloBot_ultrasonic_car block="ultrasonic return distance(cm)"
+	//% blockId=MiBit_ultrasonic_car block="ultrasonic return distance(cm)"
     //% color="#87CEEB"
     //% weight=88
     //% blockGap=10
@@ -638,7 +638,7 @@ namespace MiBit {
         return Math.idiv(d, 58);
     }
 
-    //% blockId=HelloBot_Avoid_Sensor block="Avoid_Sensor|direct %direct|value %value"
+    //% blockId=MiBit_Avoid_Sensor block="Avoid_Sensor|direct %direct|value %value"
     //% weight=87
     //% blockGap=10
     //% color="#87CEEB"

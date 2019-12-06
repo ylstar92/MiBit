@@ -1,6 +1,6 @@
-# HelloBot
+# MiBit
 
-Extension for Yahboom HelloBot 2.0.1
+Extension for XiaoRGEEK MiBit 2.0.1
 
 ## License
 
