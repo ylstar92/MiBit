@@ -119,6 +119,16 @@ namespace MiBit {
         //% blockId="Car_SpinRight" block="SpinRight"
         Car_SpinRight = 7
     }
+    export enum AloneState {
+        //% blockId="Right_F_Motor" block="Right motor forward"
+        Right_F_Motor = 1,
+        //% blockId="Right_B_Motor" block="Right motor back"
+        Right_B_Motor = 2,
+        //% blockId="Left_F_Motor" block="Left motor forward"
+        Left_F_Motor = 3,
+        //% blockId="Left_B_Motor" block="Left motor back"
+        Left_B_Motor = 4
+    }
 
     function i2cwrite(addr: number, reg: number, value: number) {
         let buf = pins.createBuffer(2)
@@ -175,6 +185,71 @@ namespace MiBit {
         buf[4] = (off >> 8) & 0xff;
         pins.i2cWriteBuffer(PCA9685_ADD, buf);
     }
+
+   function Left_F_run(speed: number) {
+
+        speed = speed * 16; // map 350 to 4096
+        if (speed >= 4096) {
+            speed = 4095
+        }
+        if (speed <= 350) {
+            speed = 350
+        }
+
+        setPwm(12, 0, speed);
+        setPwm(13, 0, 0);
+
+        //setPwm(15, 0, 0);
+        //setPwm(14, 0, 0);
+    }
+   function Left_B_run(speed: number) {
+
+        speed = speed * 16; // map 350 to 4096
+        if (speed >= 4096) {
+            speed = 4095
+        }
+        if (speed <= 350) {
+            speed = 350
+        }
+
+        setPwm(12, 0, 0);
+        setPwm(13, 0, speed);
+
+        //setPwm(15, 0, 0);
+        //setPwm(14, 0, 0);
+    }    
+     function Right_F_run(speed: number) {
+
+        speed = speed * 16; // map 350 to 4096
+        if (speed >= 4096) {
+            speed = 4095
+        }
+        if (speed <= 350) {
+            speed = 350
+        }
+
+       // setPwm(12, 0, 0);
+       // setPwm(13, 0, 0);
+
+        setPwm(15, 0, speed);
+        setPwm(14, 0, 0);
+    }
+     function Right_B_run(speed: number) {
+
+        speed = speed * 16; // map 350 to 4096
+        if (speed >= 4096) {
+            speed = 4095
+        }
+        if (speed <= 350) {
+            speed = 350
+        }
+
+       // setPwm(12, 0, 0);
+       // setPwm(13, 0, 0);
+
+        setPwm(15, 0, 0);
+        setPwm(14, 0, speed);
+    }    
 
     function Car_run(speed1: number, speed2: number) {
 
@@ -553,23 +628,20 @@ namespace MiBit {
         }
     }
     
-    //% blockId=MiBit_CarCtrlSpeed2 block="CarCtrlSpeed2|%index|speed1 %speed1|speed2 %speed2"
+    //% blockId=MiBit_AloneCtrlSpeed block="AloneCtrlSpeed|%index|speed %speed"
     //% weight=91
     //% blockGap=10
-    //% speed1.min=0 speed1.max=255 speed2.min=0 speed2.max=255
+    //% speed.min=0 speed.max=255
     //% color="#87CEEB"
     //% name.fieldEditor="gridpicker" name.fieldOptions.columns=10
-    export function CarCtrlSpeed2(index: CarState, speed1: number, speed2: number): void {
+    export function AloneCtrlSpeed(index: AloneState, speed: number): void {
         switch (index) {
-            case CarState.Car_Run: Car_run(speed1, speed2); break;
-            case CarState.Car_Back: Car_back(speed1, speed2); break;
-            case CarState.Car_Left: Car_left(speed1, speed2); break;
-            case CarState.Car_Right: Car_right(speed1, speed2); break;
-            case CarState.Car_Stop: Car_stop(); break;
-            case CarState.Car_SpinLeft: Car_spinleft(speed1, speed2); break;
-            case CarState.Car_SpinRight: Car_spinright(speed1, speed2); break;
+            case AloneState.Right_F_Motor: Left_B_run(speed); break;
+            case AloneState.Right_B_Motor: Left_F_run(speed); break;
+            case AloneState.Left_F_Motor: Right_B_run(speed); break;
+            case AloneState.Left_B_Motor: Right_F_run(speed); break;
         }
-    }    
+    }     
         
     
     //% blockId=MiBit_Line_Sensor block="Line_Sensor|direct %direct|value %value"
@@ -618,7 +690,7 @@ namespace MiBit {
 
     }
         
-	//% blockId=MiBit_ultrasonic_car block="ultrasonic return distance(cm)"
+    //% blockId=MiBit_ultrasonic_car block="ultrasonic return distance(cm)"
     //% color="#87CEEB"
     //% weight=88
     //% blockGap=10
