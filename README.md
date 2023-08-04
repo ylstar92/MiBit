@@ -10,3 +10,6 @@ MIT
 
 * for PXT/microbit
 (The metadata above is needed for package search.)
+
+## release notes
+- remove neopixel, built-in program

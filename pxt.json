@@ -1,11 +1,10 @@
 {
     "name": "MiBit",
-    "version": "2.0.1",
-    "description": "Extension for XiaoRGEEK MiBit 2.0.1",
+    "version": "2.0.2",
+    "description": "Extension for XiaoRGEEK MiBit 2.0.2",
     "license": "MIT",
     "dependencies": {
         "core": "*",
-        "neopixel": "github:991693552/pxt-neopixel",
         "Mbit_IR":  "github:XiaoRGEEK/MiBit_IR"
 	
 
