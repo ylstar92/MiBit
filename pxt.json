@@ -4,8 +4,8 @@
     "description": "Extension for XiaoRGEEK MiBit 2.0.2",
     "license": "MIT",
     "dependencies": {
-        "core": "*",
-        "Mbit_IR":  "github:XiaoRGEEK/MiBit_IR"
+        "core": "*"
+        
 	
 
     },
