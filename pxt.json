@@ -6,7 +6,6 @@
     "dependencies": {
         "core": "*",
         "Mbit_IR":  "github:ceoifung/pxt_mibit_ir"
-
     },
     "files": [
         "README.md",

@@ -14,3 +14,4 @@ MIT
 ## release notes
 - remove neopixel, built-in program
 - remove `"Mbit_IR":  "github:XiaoRGEEK/MiBit_IR"` extension 
+- fix remote ir error
